@@ -1,5 +1,5 @@
-// url to connect to 
-const socket = io('http://localhost:3000');
+var socket = io();
+
 //listen to init event, call function handleInit
 socket.on('init', handleInit);
 
