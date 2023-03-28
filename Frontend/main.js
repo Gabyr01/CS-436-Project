@@ -1,5 +1,12 @@
+// url to connect to 
+const socket = io('http://localhost:3000');
+//listen to init event, call function handleInit
+socket.on('init', handleInit);
+
+
 //setting colors
 const BG_COLOR = "#80c3ff";
+
 
 
 // get gameScreen element from main.html
@@ -48,4 +55,8 @@ function paintGame(S) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     //fill out game state objects 
+}
+
+function handleInit(msg) {
+    console.log(msg);
 }
