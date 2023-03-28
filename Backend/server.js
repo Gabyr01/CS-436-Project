@@ -1,14 +1,20 @@
-// import socket.io
-//import a function & immediately call it to get socket.io object
-const io = require('socket.io')();
+const express = require('express');
+const path = require('path');
+var morgan = require('morgan')
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
+app.use(morgan('dev'));
 
-//inline arrow function
-//gives us a client object
-//client object will allow us  to communicate back to the client that has just connected
+app.use('/', express.static(path.join(__dirname, '../Frontend')));
 
-io.on('connection', client => {
-    //sending an object with the data key that states hello
-    client.emit('init', { data: 'hello' })
+io.on('connection', (socket) => {
+  console.log('a user connected');
 });
-io.listen(8000);
+
+server.listen(3000, () => {
+  console.log('listening on 3000');
+});
