@@ -29,7 +29,31 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
     <script>
+        // In the HTML file, we can use the Socket.io client library to receive messages from the server:
         var socket = io();
+
+        // client-side identifier 
+        socket.on("connect", () => {
+            console.log("connected:", socket.connected); // true
+            console.log("socket id: ", socket.id);
+        });
+
+        //message t0 client 
+        socket.on("hello", (arg) => {
+            console.log(arg); // Hello Client
+
+        });
+
+        //disconnect
+        socket.on("disconnect", () => {
+            console.log(socket.connected); // false
+            console.log(socket.id); // undefined
+        });
+
+        //join room 
+        socket.on('connectToRoom', function(data) {
+            console.log(data);
+        });
     </script>
 </body>
 
