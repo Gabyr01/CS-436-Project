@@ -45,7 +45,7 @@ function keydown(e) {
 
 
 //call init to start
-init();
+//init();
 
 //paintGame function will accept our state object
 function paintGame(S) {
