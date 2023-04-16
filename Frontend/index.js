@@ -1,3 +1,4 @@
+/*
 var socket = io();
 
 //listen to init event, call function handleInit
@@ -17,8 +18,8 @@ let canvas, ctx;
 const gameState = {
 
 }
-
-
+*/
+/*
 //instantiate inside an initialization funtion
 function init() {
     canvas = document.getElementById('canvas');
@@ -58,3 +59,73 @@ function paintGame(S) {
 function handleInit(msg) {
     console.log(msg);
 }
+*/
+
+const canvas = document.getElementById('drawing-board');
+const toolbar = document.getElementById('toolbar');
+const ctx = canvas.getContext('2d')
+
+const canvasOffsetX = canvas.offsetLeft;
+const canvasOffsetY = canvas.offsetTop;
+
+canvas.width = window.innerWidth - canvasOffsetX;
+canvas.height = window.innerHeight - canvasOffsetY;
+
+
+//global variables that change
+let isPainting = false;
+let lineWidth = 5;
+//x and y is where drawing starts from based on mouse position
+let startX;
+let startY;
+
+//click event listener for id toolbar
+toolbar.addEventListener('click', e => {
+    //when clear is clicked, emptying the canvas
+    if (e.target.id === 'clear') {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+});
+
+//event to handle toolbar input changes
+toolbar.addEventListener('change', e => {
+    //changes the color value to the new value entered
+    if (e.target.id === 'stroke') {
+        ctx.strokeStyle = e.target.value;
+    }
+    //changes the lineWidth variable to the new value entered
+    if (e.target.id === 'lineWidth') {
+        lineWidth = e.target.value;
+    }
+});
+
+const draw = (e) => {
+    if (!isPainting) {
+        return;
+    }
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+    //to show the drawing while on mousedown event
+    ctx.stroke();
+
+}
+
+//event for when the user starts to draw
+canvas.addEventListener('mousedown', (e) => {
+    isPainting = true;
+    startX = e.clientX;
+    startY = e.clientY;
+});
+
+//event for when the user is done drawing
+canvas.addEventListener('mouseup', e => {
+    isPainting = false;
+    //fills in what is drawn
+    ctx.stroke();
+    //creates a new line and not connecting
+    ctx.beginPath();
+});
+
+//event for when you move the mouse while drawing
+canvas.addEventListener('mousemove', draw)
