@@ -21,17 +21,17 @@ app.use(morgan('dev'));
 app.use('/', express.static(path.join(__dirname, '../Frontend')));
 
 
-server.listen(3000, () => {
+server.listen(3051, () => {
     console.log('listening on 3000');
 });
 
 // Add a listener to the connection event to handle new connections from clients:
 io.on('connection', (socket) => {
 
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 
 });
 
