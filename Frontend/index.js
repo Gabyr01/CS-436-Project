@@ -1,8 +1,11 @@
-/*
 var socket = io();
 
 //listen to init event, call function handleInit
 socket.on('init', handleInit);
+
+
+/*
+
 
 
 //setting colors
