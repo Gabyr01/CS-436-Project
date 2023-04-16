@@ -12,39 +12,64 @@
 </head>
 
 <body>
-    <section class="vh-100">
-        <div class="container h-100">
-            <section id="chat-container">
-                <div id="chatbox" class="box">
-                    <div class="text-mesages">..converse</div>
-                </div>
-
-
-                <form action="/" id="my-form">
-                    <input type="text" id="text-area" class="box" />
-
-                    <button type="button" class="btn btn-primary">Send</button>
+    <!-- ************************** -->
+    <div class="JOINPAGE">
+        <div class="join-container">
+            <!-- Put your logo here -->
+            <div class="logo ">
+                <img src="coin.png " alt="logo " width="300 " height="400 ">
+            </div>
+            <div class="join ">
+                <h1>Start a Lobby</h1>
+                <!--onclick="getCodeButton() " -->
+                <button id="get-code">Get a Code</button>
+                <p id="lobby-code-display"></p>
+                <h1>Join a Lobby</h1>
+                <form>
+                    <label for="lobby-code ">Enter lobby code:</label>
+                    <input type="text " id="lobby-code " name="lobby-code " required>
+                    <button type="submit ">Join Game</button>
                 </form>
-            </section>
-            <section class="container">
-                <!--<div id="gameScreen" class="h-100">-->
-                <div id="toolbar">
-                    <!--<div class="d-flex flex-column ">-->
-                    <h1>this is the main page</h1>
-                    <label for="stroke">Color</label>
-                    <input id="stroke" name='color' type="color">
-                    <label for="lineWidth">Line Width</label>
-                    <input id="lineWidth" name="lineWidth" type="number" value="5">
-                    <button id="clear">CLEAR</button>
-                </div>
-                <div class="drawing-board">
-                    <!--<canvas id="canvas"> </canvas>-->
-                    <canvas id="drawing-board"></canvas>
-                </div>
-                <!--</div>-->
-            </section>
+
+            </div>
         </div>
-    </section>
+    </div>
+    <!-- ************************** -->
+    <div class="GAMEPAGE">
+        <section class="vh-100">
+            <div class="container h-100">
+                <section id="chat-container">
+                    <div id="chatbox" class="box">
+                        <div class="text-mesages">..converse</div>
+                    </div>
+
+
+                    <form action="/" id="my-form">
+                        <input type="text" id="text-area" class="box" />
+
+                        <button type="button" class="btn btn-primary">Send</button>
+                    </form>
+                </section>
+                <section class="container">
+                    <!--<div id="gameScreen" class="h-100">-->
+                    <div id="toolbar">
+                        <!--<div class="d-flex flex-column ">-->
+                        <h1>this is the main page</h1>
+                        <label for="stroke">Color</label>
+                        <input id="stroke" name='color' type="color">
+                        <label for="lineWidth">Line Width</label>
+                        <input id="lineWidth" name="lineWidth" type="number" value="5">
+                        <button id="clear">CLEAR</button>
+                    </div>
+                    <div class="drawing-board">
+                        <!--<canvas id="canvas"> </canvas>-->
+                        <canvas id="drawing-board"></canvas>
+                    </div>
+                    <!--</div>-->
+                </section>
+            </div>
+        </section>
+    </div>
 
 
     <script src="/socket.io/socket.io.js"></script>
