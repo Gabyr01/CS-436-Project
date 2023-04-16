@@ -21,15 +21,18 @@ app.use(morgan('dev'));
 app.use('/', express.static(path.join(__dirname, '../Frontend')));
 
 
-server.listen(3000, () => {
+server.listen(3051, () => {
     console.log('listening on 3000');
 });
 
 // Add a listener to the connection event to handle new connections from clients:
 io.on('connection', (socket) => {
+
     console.log('a user connected');
-    // send a message to the client, use the emit method on the socket object:
-    socket.emit('hello', 'Hello, client!');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+
 });
 
 // When a new user connects, you can assign them to a new room or join an existing room:
