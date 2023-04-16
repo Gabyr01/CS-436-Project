@@ -29,6 +29,16 @@ server.listen(3051, () => {
 io.on('connection', (socket) => {
 
     console.log('a user connected');
+
+
+    // socket.on('createRoom', () => {
+    //     const roomName = generateLobbyCode(6);
+    //     socket.join(roomName);
+    //     console.log(`Room "${roomName}" created.`);
+    // });
+
+
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
