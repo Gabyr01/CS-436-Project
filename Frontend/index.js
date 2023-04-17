@@ -1,8 +1,46 @@
-/*
 var socket = io();
 
 //listen to init event, call function handleInit
-socket.on('init', handleInit);
+// socket.on('init', handleInit);
+
+
+const getCodeButton = document.getElementById("get-code");
+const lobbyCodeDisplay = document.getElementById("lobby-code-display");
+
+
+getCodeButton.addEventListener('click', function() {
+
+    // Generate a lobby code and display it
+    const lobbyCode = generateLobbyCode(6);
+    lobbyCodeDisplay.innerText = lobbyCode;
+    getCodeButton.style.display = "none";
+
+
+});
+
+
+
+function generateLobbyCode(length) {
+    let code = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < length; i++) {
+        code += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return code;
+}
+
+// Add event listener to "Get a Code" button
+// getCodeButton.addEventListener("click", () => {
+//     // Generate a random code
+//     // Display the code in the lobby code display element
+//     lobbyCodeDisplay.innerText = `Your lobby code is: ${generateLobbyCode(6)}`;
+//     getCodeButton.style.display = 'none';
+// });
+/*
+
 
 
 //setting colors
