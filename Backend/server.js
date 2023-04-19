@@ -2,13 +2,12 @@ const express = require('express');
 const path = require('path');
 var morgan = require('morgan')
 const app = express();
+
+const PORT = 3051
+
 // Create a new instance of the http module 
 const http = require('http');
 
-
-/****/
-
-/****/
 //server is the object returned by the http.createServer() method
 const server = http.createServer(app);
 
@@ -18,11 +17,14 @@ const io = new Server(server);
 
 app.use(morgan('dev'));
 
-app.use('/', express.static(path.join(__dirname, '../Frontend')));
 
+//pathing to frontend
+app.use('/', express.static(path.join(__dirname, '../Frontend/static')));
+app.use('/', express.static(path.join(__dirname, '../Frontend/styles')));
+app.use('/', express.static(path.join(__dirname, '../Frontend/code')));
 
-server.listen(3051, () => {
-    console.log('listening on 3000');
+server.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
 });
 
 // Add a listener to the connection event to handle new connections from clients:
@@ -30,15 +32,18 @@ io.on('connection', (socket) => {
 
     console.log('a user connected');
 
-
     // socket.on('createRoom', () => {
     //     const roomName = generateLobbyCode(6);
     //     socket.join(roomName);
     //     console.log(`Room "${roomName}" created.`);
     // });
-    //test
 
-
+    socket.on('chat-message', (msg) => {
+        console.log(msg);
+        io.emit('chat-message', msg); // emit the message to all connected clients
+      });
+    
+    
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
@@ -47,6 +52,7 @@ io.on('connection', (socket) => {
 
 // When a new user connects, you can assign them to a new room or join an existing room:
 var roomno = 1;
+
 io.on('connection', function(socket) {
     console.log(socket.rooms); // Set { <socket.id> }
     socket.join("room-" + roomno);
