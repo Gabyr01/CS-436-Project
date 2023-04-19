@@ -1,23 +1,19 @@
+import chatbox from './chatbox.js'
+
 var socket = io();
 
-//listen to init event, call function handleInit
-// socket.on('init', handleInit);
+chatbox(socket)
 
 
 const getCodeButton = document.getElementById("get-code");
 const lobbyCodeDisplay = document.getElementById("lobby-code-display");
 
-
 getCodeButton.addEventListener('click', function() {
-
     // Generate a lobby code and display it
     const lobbyCode = generateLobbyCode(6);
     lobbyCodeDisplay.innerText = lobbyCode;
     getCodeButton.style.display = "none";
-
-
 });
-
 
 
 function generateLobbyCode(length) {

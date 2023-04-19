@@ -7,37 +7,15 @@
     <meta name="viewport" content="Width=device-width, initial-scale=1.0">
     <title>MultiPlayer Game</title>
 
-    <link rel="stylesheet" href="/chatbox.css" />
+    <link rel="stylesheet" href="chatbox.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
 </head>
 
 <body>
-    <!-- ************************** -->
-    <div class="JOINPAGE">
-        <div class="join-container">
-            <!-- Put your logo here -->
-            <div class="logo ">
-                <img src="coin.png " alt="logo " width="300 " height="400 ">
-            </div>
-            <div class="join ">
-                <h1>Start a Lobby</h1>
-                <!--onclick="getCodeButton() " -->
-                <button id="get-code">Get a Code</button>
-                <p id="lobby-code-display"></p>
-                <h1>Join a Lobby</h1>
-                <form>
-                    <label for="lobby-code ">Enter lobby code:</label>
-                    <input type="text " id="lobby-code " name="lobby-code " required>
-                    <button id="join-button" type="submit ">Join Game</button>
-                </form>
-
-            </div>
-        </div>
-    </div>
-    <!-- ************************** -->
     <div class="GAMEPAGE">
         <section class="vh-100">
             <div class="container h-100">
+                
                 <section id="chat-container">
                     <div id="chatbox" class="box">
                         <div class="text-mesages">..converse</div>
@@ -46,8 +24,7 @@
 
                     <form action="/" id="my-form">
                         <input type="text" id="text-area" class="box" />
-
-                        <button type="button" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
                     </form>
                 </section>
                 <section class="container">
@@ -73,8 +50,9 @@
 
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="chatbox.js" type="module"></script>
+    <script src="index.js" type="module"></script>
+
+    
 </body>
-<script src="index.js"></script>
 
 </html>
