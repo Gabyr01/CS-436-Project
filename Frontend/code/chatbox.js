@@ -38,9 +38,6 @@ const chatbox = (socket) => {
         })
     }
 
-    
-
-
   };
   
   export default chatbox;
