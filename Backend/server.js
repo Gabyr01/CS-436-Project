@@ -1,7 +1,9 @@
+
 const express = require('express');
 const path = require('path');
-var morgan = require('morgan')
+const morgan = require('morgan')
 const app = express();
+//const io_routing = require('./io/routing.js')
 
 const PORT = 3051
 
@@ -16,7 +18,6 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 app.use(morgan('dev'));
-
 
 //pathing to frontend
 app.use('/', express.static(path.join(__dirname, '../Frontend/static')));
@@ -39,8 +40,7 @@ io.on('connection', (socket) => {
     // });
 
     socket.on('chat-message', (msg) => {
-        console.log(msg);
-        io.emit('chat-message', msg); // emit the message to all connected clients
+        socket.broadcast.emit('chat-message', msg);
       });
     
     
@@ -62,3 +62,4 @@ io.on('connection', function(socket) {
     console.log("you are in room: ", roomno);
     //socket.leave("room-"+roomno);//to leave the room 
 });
+
