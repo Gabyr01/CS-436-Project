@@ -1,43 +1,44 @@
+const prepareMessage = (class_, player) => {
+  let {username, message} = player
+  const chatbox = document.getElementById('chatbox')
+  const Message = document.createElement('div')
+  Message.classList.add(class_)
+  Message.innerHTML = `${username}: ${message}`
+  console.log(Message)
+  chatbox.appendChild(Message)
+}
+
 const chatbox = (socket) => {
-    const form = document.getElementById("my-form");
+  const form = document.getElementById("my-form");
+  const formInput = document.getElementById("text-area");
+  const sendButton = document.getElementById("send-button");
   
-    console.log(form);
-  
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-  
-      const formInput = document.getElementById("text-area").value;
-  
-      if (notEmpty(formInput)) {
-        const message = createMessage(formInput);
-        sendMessage(message);
-      } else {
-        return;
-      }
-    });
-  
-    const notEmpty = (message) => message;
-  
-    const regexMessage = (message, username = "") => {
-      return `${username ? username + ": " : ""}${message}`;
-    };
-  
-    const createMessage = (message) => {
-      const formattedMessage = regexMessage(message);
-  
-      return formattedMessage;
-    };
-  
-    const sendMessage = (message) => {
-      socket.emit("chat-message", message);
-    };
-
-    const getMessage = () => {
-        socket.on('chat-message', (mssg) => {
-            return mssg
-        })
-    }
-
+  //!remove this once it implemented correctly, and make a parameter
+  const player = {
+    username: "john",
+    message: "",
+    score:'',
   };
   
-  export default chatbox;
+  let updateMessage= () => {
+    player.message = formInput.value
+  }
+  
+  formInput.addEventListener("input", updateMessage);
+  
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    sendMessage(player);
+    formInput.value = "";
+  });
+  
+  sendButton.addEventListener("click", () => {
+    formInput.value = "";
+  });
+  
+  const sendMessage = (message) => {
+    prepareMessage('self',player)
+    socket.emit("chat-message", message);
+  };
+};
+export {chatbox,prepareMessage};

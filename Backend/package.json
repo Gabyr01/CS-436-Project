@@ -6,9 +6,13 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "watch": "nodemon --ext *"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
     "nodemon": "^2.0.22"
   }
 }

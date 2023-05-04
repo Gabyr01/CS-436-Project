@@ -3,15 +3,27 @@
     left: 0;
     z-index: 10;
     background-color: #23222b;
-    width: 25vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px;
-    min-width: 22vh;
+    min-width: 35vh;
     max-width: 28vh;
+}
+
+.self, .incomingMessage{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.self{
+    margin-left: auto; 
+}
+
+.incomingMessage{
+
 }
 
 .container {
@@ -23,6 +35,10 @@
     flex: 1;
     width: 100%;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow: auto;
 }
 
 #my-form {
