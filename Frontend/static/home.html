@@ -21,10 +21,15 @@
                 <button id="get-code">Get a Code</button>
                 <p id="lobby-code-display"></p>
                 <h1>Join a Lobby</h1>
-                <form>
-                    <label for="lobby-code ">Enter lobby code:</label>
+
+                <form onsubmit="joinLobby(event)">
+                    <label for="lobby-code">Enter Lobby Code:</label>
                     <input type="text " id="lobby-code " name="lobby-code " required />
-                    <a id="join-button" type="submit" href="./index.html">Join Game</a>
+
+                    <label for="username">Enter Username:</label>
+                    <input type="text " id="username " name="username" required />
+
+                    <button type="submit" id="join-button">Join Lobby</button>
                 </form>
             </div>
         </div>
