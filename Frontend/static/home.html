@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/chatbox.css" />
     <title>Lobby</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="JOINPAGE">
-      <div class="join-container">
-        <!-- Put your logo here -->
-        <div class="logo">
-          <img
-            src="../images/coin.png"
-            alt="logo"
-            width="300 "
-            height="400 "
-          />
+        <div class="join-container">
+            <!-- Put your logo here -->
+            <div class="logo">
+                <img src="images/coin.png" alt="logo" width="300 " height="400 " />
+            </div>
+            <div class="join">
+                <h1>Start a Lobby</h1>
+                <button id="get-code">Get a Code</button>
+                <p id="lobby-code-display"></p>
+                <h1>Join a Lobby</h1>
+
+                <form onsubmit="joinLobby(event)">
+                    <label for="lobby-code">Enter Lobby Code:</label>
+                    <input type="text " id="lobby-code " name="lobby-code " required />
+
+                    <label for="username">Enter Username:</label>
+                    <input type="text " id="username " name="username" required />
+
+                    <button type="submit" id="join-button">Join Lobby</button>
+                </form>
+            </div>
         </div>
-        <div class="join">
-          <h1>Start a Lobby</h1>
-          <!--onclick="getCodeButton() " -->
-          <button id="get-code">Get a Code</button>
-          <p id="lobby-code-display"></p>
-          <h1>Join a Lobby</h1>
-          <form>
-            <label for="lobby-code ">Enter lobby code:</label>
-            <input type="text " id="lobby-code " name="lobby-code " required />
-            <a id="join-button" type="submit" href="./index.html">Join Game</a>
-          </form>
-        </div>
-      </div>
     </div>
-    <script src="index.js"></script>
-  </body>
+    <script src="indexHome.js" type="module"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+</body>
+
 </html>
