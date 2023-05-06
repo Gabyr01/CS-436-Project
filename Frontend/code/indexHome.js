@@ -38,10 +38,11 @@ function generateLobbyCode(length) {
 
 function joinLobby(event) {
     event.preventDefault();
-    const lobbyCodeInput = document.getElementById("lobby-code");
-    const usernameInput = document.getElementById("username");
-    const lobbyCode = lobbyCodeInput.value.trim();
-    const username = usernameInput.value.trim();
+    window.location.href = "/index.html";
+    // const lobbyCodeInput = document.getElementById("lobby-code");
+    // const usernameInput = document.getElementById("username");
+    // const lobbyCode = lobbyCodeInput.value.trim();
+    // const username = usernameInput.value.trim();
     console.log(lobbyCode);
     // if (!lobbyCode || !username) {
     //     alert("Please enter a lobby code and username");
@@ -49,7 +50,7 @@ function joinLobby(event) {
     // }
     // socket.emit("joinRoom", { lobbyCode, username }, (response) => {
     //     if (response.status === "success") {
-    //         window.location.href = "/room.html";
+    //         window.location.href = "/index.html";
     //     } else {
     //         alert(response.message);
     //     }
