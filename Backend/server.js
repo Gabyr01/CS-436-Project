@@ -23,6 +23,19 @@ app.use('/', express.static(path.join(__dirname, '../Frontend/static')));
 app.use('/', express.static(path.join(__dirname, '../Frontend/styles')));
 app.use('/', express.static(path.join(__dirname, '../Frontend/code')));
 
+
+// Handle POST request to "/index"
+app.post("/index", (req, res) => {
+    // Extract lobby code and username from request body
+    const { lobbyCode, username } = req.body;
+
+    // Do something with lobby code and username
+    // ...
+
+    // Send response to client
+    res.send("POST request received");
+});
+
 server.listen(PORT, () => {
     console.log(`listening on ${PORT}`);
 });

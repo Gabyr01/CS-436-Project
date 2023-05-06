@@ -36,23 +36,27 @@ function generateLobbyCode(length) {
 
 ///////////////////////////////////////
 
-function joinLobby(event) {
-    event.preventDefault();
-    window.location.href = "/index.html";
-    // const lobbyCodeInput = document.getElementById("lobby-code");
-    // const usernameInput = document.getElementById("username");
-    // const lobbyCode = lobbyCodeInput.value.trim();
-    // const username = usernameInput.value.trim();
-    console.log(lobbyCode);
+const form = document.getElementById('lobbyForm');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // prevent the default form submission behavior
+    const lobbyCodeInput = form.elements['lobby-code'];
+    const usernameInput = form.elements['username'];
+    console.log("HI");
+    window.location.href = '/index.html';
+    const lobbyCode = lobbyCodeInput.value.trim();
+    const username = usernameInput.value.trim();
+
     // if (!lobbyCode || !username) {
-    //     alert("Please enter a lobby code and username");
+    //     alert('Please enter a lobby code and username');
     //     return;
     // }
-    // socket.emit("joinRoom", { lobbyCode, username }, (response) => {
-    //     if (response.status === "success") {
-    //         window.location.href = "/index.html";
+
+    // socket.emit('joinRoom', { lobbyCode, username }, (response) => {
+    //     if (response.status === 'success') {
+    //         window.location.href = '/room.html';
     //     } else {
     //         alert(response.message);
     //     }
     // });
-}
+});
