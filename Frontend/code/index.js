@@ -1,13 +1,14 @@
-import {chatbox,prepareMessage} from './chatbox.js'
+//import { chatbox, prepareMessage } from './chatbox.js'
 
 var socket = io();
 
 // recieving message
-chatbox(socket)
+// chatbox(socket)
 
-socket.on("chat-message", (info) => {
-    prepareMessage('incomingMessage',info)
-});
+// socket.on("chat-message", (info) => {
+//     prepareMessage('incomingMessage', info)
+// });
+
 
 const getCodeButton = document.getElementById("get-code");
 const lobbyCodeDisplay = document.getElementById("lobby-code-display");
@@ -32,10 +33,11 @@ function generateLobbyCode(length) {
     return code;
 }
 
-// Add event listener to "Get a Code" button
+// Add event listener to "Get a Code"button
 // getCodeButton.addEventListener("click", () => {
 //     // Generate a random code
 //     // Display the code in the lobby code display element
+//     console.log("clicked!")
 //     lobbyCodeDisplay.innerText = `Your lobby code is: ${generateLobbyCode(6)}`;
 //     getCodeButton.style.display = 'none';
 // });
@@ -55,49 +57,49 @@ let canvas, ctx;
 //game state object here
 const gameState = {
 
-}
-*/
-/*
-//instantiate inside an initialization funtion
-function init() {
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
+    } *
+    /
+    /*
+    //instantiate inside an initialization funtion
+    function init() {
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
 
-    //setting canvas size
-    canvas.width = canvas.height = 600;
-    ctx.fillStyle = BG_COLOR;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        //setting canvas size
+        canvas.width = canvas.height = 600;
+        ctx.fillStyle = BG_COLOR;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // event listenor on a keydown event 
-    //calls function keydown
-    document.addEventListener('keydown', keydown)
-}
+        // event listenor on a keydown event 
+        //calls function keydown
+        document.addEventListener('keydown', keydown)
+    }
 
-//THIS function was created for testing purpose
-//keydown function
-//e : event listener gets an event as an argument 
-//console log the key that has been pressed
-function keydown(e) {
-    console.log(e.keyCode);
-}
+    //THIS function was created for testing purpose
+    //keydown function
+    //e : event listener gets an event as an argument 
+    //console log the key that has been pressed
+    function keydown(e) {
+        console.log(e.keyCode);
+    }
 
 
 
-//call init to start
-//init();
+    //call init to start
+    //init();
 
-//paintGame function will accept our state object
-function paintGame(S) {
-    ctx.fillStyle = BG_COLOR;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    //paintGame function will accept our state object
+    function paintGame(S) {
+        ctx.fillStyle = BG_COLOR;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    //fill out game state objects 
-}
+        //fill out game state objects 
+    }
 
-function handleInit(msg) {
-    console.log(msg);
-}
-*/
+    function handleInit(msg) {
+        console.log(msg);
+    }
+    */
 
 const canvas = document.getElementById('drawing-board');
 const toolbar = document.getElementById('toolbar');
