@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan')
@@ -32,18 +31,19 @@ server.listen(PORT, () => {
 io.on('connection', (socket) => {
 
     console.log('a user connected');
+    console.log()
 
-    // socket.on('createRoom', () => {
-    //     const roomName = generateLobbyCode(6);
-    //     socket.join(roomName);
-    //     console.log(`Room "${roomName}" created.`);
-    // });
+    socket.on('createRoom', (lobbyCode) => {
+        socket.join(lobbyCode);
+        console.log(`Room "${lobbyCode}" created.`);
+    });
+
 
     socket.on('chat-message', (msg) => {
         socket.broadcast.emit('chat-message', msg);
-      });
-    
-    
+    });
+
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
@@ -51,15 +51,14 @@ io.on('connection', (socket) => {
 });
 
 // When a new user connects, you can assign them to a new room or join an existing room:
-var roomno = 1;
+// var roomno = 1;
 
-io.on('connection', function(socket) {
-    console.log(socket.rooms); // Set { <socket.id> }
-    socket.join("room-" + roomno);
-    //Send this event to everyone in the room.
-    io.sockets.in("room-" + roomno).emit('connectToRoom', "You are in room no. " + roomno);
-    console.log(socket.rooms); // Set { <socket.id>, "room1" }
-    console.log("you are in room: ", roomno);
-    //socket.leave("room-"+roomno);//to leave the room 
-});
-
+// io.on('connection', function(socket) {
+//     console.log(socket.rooms); // Set { <socket.id> }
+//     socket.join("room-" + roomno);
+//     //Send this event to everyone in the room.
+//     io.sockets.in("room-" + roomno).emit('connectToRoom', "You are in room no. " + roomno);
+//     console.log(socket.rooms); // Set { <socket.id>, "room1" }
+//     console.log("you are in room: ", roomno);
+//     //socket.leave("room-"+roomno);//to leave the room 
+// });

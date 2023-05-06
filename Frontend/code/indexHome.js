@@ -18,8 +18,9 @@ getCodeButton.addEventListener('click', function() {
     const lobbyCode = generateLobbyCode(6);
     lobbyCodeDisplay.innerText = lobbyCode;
     getCodeButton.style.display = "none";
+    // Emit a 'createRoom' event to the server with the generated lobby code
+    socket.emit('createRoom', lobbyCode);
 });
-
 
 function generateLobbyCode(length) {
     let code = '';
@@ -31,4 +32,26 @@ function generateLobbyCode(length) {
     }
 
     return code;
+}
+
+///////////////////////////////////////
+
+function joinLobby(event) {
+    event.preventDefault();
+    const lobbyCodeInput = document.getElementById("lobby-code");
+    const usernameInput = document.getElementById("username");
+    const lobbyCode = lobbyCodeInput.value.trim();
+    const username = usernameInput.value.trim();
+    console.log(lobbyCode);
+    // if (!lobbyCode || !username) {
+    //     alert("Please enter a lobby code and username");
+    //     return;
+    // }
+    // socket.emit("joinRoom", { lobbyCode, username }, (response) => {
+    //     if (response.status === "success") {
+    //         window.location.href = "/room.html";
+    //     } else {
+    //         alert(response.message);
+    //     }
+    // });
 }
