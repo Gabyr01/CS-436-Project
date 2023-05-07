@@ -42,21 +42,19 @@ form.addEventListener('submit', (event) => {
     event.preventDefault(); // prevent the default form submission behavior
     const lobbyCodeInput = form.elements['lobby-code'];
     const usernameInput = form.elements['username'];
-    console.log("HI");
-    window.location.href = '/index.html';
     const lobbyCode = lobbyCodeInput.value.trim();
     const username = usernameInput.value.trim();
 
-    // if (!lobbyCode || !username) {
-    //     alert('Please enter a lobby code and username');
-    //     return;
-    // }
+    socket.emit('joinRoom', { lobbyCode, username }, (response) => {
+        if (response.status === 'success') {
+            window.location.href = '/index.html';
+        } else {
+            alert(response.message);
+        }
+    });
+});
 
-    // socket.emit('joinRoom', { lobbyCode, username }, (response) => {
-    //     if (response.status === 'success') {
-    //         window.location.href = '/room.html';
-    //     } else {
-    //         alert(response.message);
-    //     }
-    // });
+
+socket.on('message', (message) => {
+    console.log(message); // { username: 'admin', text: 'Hello, world!' }
 });
