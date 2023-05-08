@@ -69,6 +69,17 @@ io.on('connection', (socket) => {
 
 });
 
+io.sockets.on('connection', newConnection);
+function newConnection(socket){
+    console.log('new connection ' + socket.id);
+
+    socket.on('mouse', mouseMsg);
+    function mouseMsg(data){
+        socket.broadcast.emit('mouse',data);
+        console.log(data);
+    }
+}
+
 
 // When a new user connects, you can assign them to a new room or join an existing room:
 var roomno = 1;

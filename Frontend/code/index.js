@@ -142,15 +142,32 @@ toolbar.addEventListener("change", (e) => {
 });
 
 const draw = (e) => {
-  if (!isPainting) {
-    return;
-  }
-  ctx.lineWidth = lineWidth;
-  ctx.lineCap = "round";
-  ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
-  //to show the drawing while on mousedown event
-  ctx.stroke();
-};
+    if (!isPainting) {
+        return;
+    }
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+    //to show the drawing while on mousedown event
+    ctx.stroke();
+
+    var data ={
+        x: e.clientX,
+        y: e.clientY,
+        w: lineWidth,
+        z: ctx.strokeStyle
+    }
+    socket.emit('mouse', data);
+}
+
+socket.on('mouse', (data) => {
+    //console.log('Recieved mouse event from server:', data);
+    
+    ctx.lineWidth = data.w;
+    ctx.strokeStyle = data.z;
+    ctx.fillRect(data.x,data.y, ctx.lineWidth, ctx.lineWidth);
+});
+
 
 //event for when the user starts to draw
 canvas.addEventListener("mousedown", (e) => {
