@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0">
+    <title>MultiPlayer Game</title>
+<!-- remove ../styles/ -->
+    <link rel="stylesheet" href="chatbox.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    
+</head>
+
+<body>
+    <div class="GAMEPAGE">
+        <section class="vh-100">
+            <div class="container h-100">
+                
+                <section id="chat-container">
+                    <div id="chatbox" class="box">
+                    </div>
+                    <form action="/" id="my-form">
+                        <input type="text" id="text-area" class="box" />
+                        <button type="submit" class="btn btn-primary" id="send-button">Send</button>
+                    </form>
+                </section>
+                <section class="container">
+                    <!--<div id="gameScreen" class="h-100">-->
+                    <div id="toolbar">
+                        <!--<div class="d-flex flex-column ">-->
+                        <h1>DRAW</h1>
+                        <label for="stroke">Color</label>
+                        <input id="stroke" name='color' type="color">
+                        <label for="lineWidth">Line Width</label>
+                        <input id="lineWidth" name="lineWidth" type="number" value="5">
+                        <button id="clear">CLEAR</button>
+                    </div>
+                    <div class="drawing-board">
+                        <!--<canvas id="canvas"> </canvas>-->
+                        <canvas id="drawing-board"></canvas>
+                    </div>
+                    <!--</div>-->
+                </section>
+                <section class="voting">
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <object data="voting.html"></object>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+
+
+    <script src="index.js" type="module"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    
+</body>
+
+</html>
