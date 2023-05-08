@@ -1,5 +1,3 @@
-//import { chatbox, prepareMessage } from './chatbox.js'
-
 var socket = io();
 
 // recieving message
@@ -39,7 +37,6 @@ function generateLobbyCode(length) {
 const form = document.getElementById('lobbyForm');
 
 form.addEventListener('submit', (event) => {
-    event.preventDefault(); // prevent the default form submission behavior
     const lobbyCodeInput = form.elements['lobby-code'];
     const usernameInput = form.elements['username'];
     const lobbyCode = lobbyCodeInput.value.trim();
@@ -52,9 +49,4 @@ form.addEventListener('submit', (event) => {
             alert(response.message);
         }
     });
-});
-
-
-socket.on('message', (message) => {
-    console.log(message); // { username: 'admin', text: 'Hello, world!' }
 });

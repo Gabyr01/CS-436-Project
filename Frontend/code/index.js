@@ -1,14 +1,16 @@
-//import { chatbox, prepareMessage } from './chatbox.js'
+import { chatbox, prepareMessage } from './chatbox.js'
+import player from './player.js';
 
 var socket = io();
 
+console.log(player)
+
 // recieving message
-// chatbox(socket)
+chatbox(socket)
 
-// socket.on("chat-message", (info) => {
-//     prepareMessage('incomingMessage', info)
-// });
-
+socket.on("chat-message", (info) => {
+  prepareMessage("incomingMessage", info);
+});
 
 const getCodeButton = document.getElementById("get-code");
 const lobbyCodeDisplay = document.getElementById("lobby-code-display");
@@ -22,15 +24,16 @@ const lobbyCodeDisplay = document.getElementById("lobby-code-display");
  */
 
 function generateLobbyCode(length) {
-    let code = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
+  let code = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
 
-    for (let i = 0; i < length; i++) {
-        code += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
+  for (let i = 0; i < length; i++) {
+    code += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
 
-    return code;
+  return code;
 }
 
 // Add event listener to "Get a Code"button
@@ -101,16 +104,15 @@ const gameState = {
     }
     */
 
-const canvas = document.getElementById('drawing-board');
-const toolbar = document.getElementById('toolbar');
-const ctx = canvas.getContext('2d')
+const canvas = document.getElementById("drawing-board");
+const toolbar = document.getElementById("toolbar");
+const ctx = canvas.getContext("2d");
 
 const canvasOffsetX = canvas.offsetLeft;
 const canvasOffsetY = canvas.offsetTop;
 
 canvas.width = window.innerWidth - canvasOffsetX;
 canvas.height = window.innerHeight - canvasOffsetY;
-
 
 //global variables that change
 let isPainting = false;
@@ -120,52 +122,51 @@ let startX;
 let startY;
 
 //click event listener for id toolbar
-toolbar.addEventListener('click', e => {
-    //when clear is clicked, emptying the canvas
-    if (e.target.id === 'clear') {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
+toolbar.addEventListener("click", (e) => {
+  //when clear is clicked, emptying the canvas
+  if (e.target.id === "clear") {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
 });
 
 //event to handle toolbar input changes
-toolbar.addEventListener('change', e => {
-    //changes the color value to the new value entered
-    if (e.target.id === 'stroke') {
-        ctx.strokeStyle = e.target.value;
-    }
-    //changes the lineWidth variable to the new value entered
-    if (e.target.id === 'lineWidth') {
-        lineWidth = e.target.value;
-    }
+toolbar.addEventListener("change", (e) => {
+  //changes the color value to the new value entered
+  if (e.target.id === "stroke") {
+    ctx.strokeStyle = e.target.value;
+  }
+  //changes the lineWidth variable to the new value entered
+  if (e.target.id === "lineWidth") {
+    lineWidth = e.target.value;
+  }
 });
 
 const draw = (e) => {
-    if (!isPainting) {
-        return;
-    }
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = 'round';
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
-    //to show the drawing while on mousedown event
-    ctx.stroke();
-
-}
+  if (!isPainting) {
+    return;
+  }
+  ctx.lineWidth = lineWidth;
+  ctx.lineCap = "round";
+  ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+  //to show the drawing while on mousedown event
+  ctx.stroke();
+};
 
 //event for when the user starts to draw
-canvas.addEventListener('mousedown', (e) => {
-    isPainting = true;
-    startX = e.clientX;
-    startY = e.clientY;
+canvas.addEventListener("mousedown", (e) => {
+  isPainting = true;
+  startX = e.clientX;
+  startY = e.clientY;
 });
 
 //event for when the user is done drawing
-canvas.addEventListener('mouseup', e => {
-    isPainting = false;
-    //fills in what is drawn
-    ctx.stroke();
-    //creates a new line and not connecting
-    ctx.beginPath();
+canvas.addEventListener("mouseup", (e) => {
+  isPainting = false;
+  //fills in what is drawn
+  ctx.stroke();
+  //creates a new line and not connecting
+  ctx.beginPath();
 });
 
 //event for when you move the mouse while drawing
-canvas.addEventListener('mousemove', draw)
+canvas.addEventListener("mousemove", draw);

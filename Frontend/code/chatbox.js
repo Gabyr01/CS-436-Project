@@ -1,10 +1,12 @@
+import player from "./player.js"
+
 const prepareMessage = (class_, player) => {
-    let { username, message } = player
+    let {username, message } = player
+    console.log(username)
     const chatbox = document.getElementById('chatbox')
     const Message = document.createElement('div')
     Message.classList.add(class_)
     Message.innerHTML = `${username}: ${message}`
-    console.log(Message)
     chatbox.appendChild(Message)
 }
 
@@ -12,13 +14,6 @@ const chatbox = (socket) => {
     const form = document.getElementById("my-form");
     const formInput = document.getElementById("text-area");
     const sendButton = document.getElementById("send-button");
-
-    //!remove this once it implemented correctly, and make a parameter
-    const player = {
-        username: "john",
-        message: "",
-        score: '',
-    };
 
     let updateMessage = () => {
         player.message = formInput.value

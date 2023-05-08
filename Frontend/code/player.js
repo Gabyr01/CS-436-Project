@@ -1,5 +1,6 @@
-const player_information = {
-    username: "john",
-    message: "",
-    score:'',
+const player = {
+    username: "",
+    message: " ",
   };
+
+export default player;
