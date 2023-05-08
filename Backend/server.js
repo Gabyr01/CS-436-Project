@@ -26,13 +26,15 @@ app.use('/', express.static(path.join(__dirname, '../Frontend/static')));
 app.use('/', express.static(path.join(__dirname, '../Frontend/styles')));
 app.use('/', express.static(path.join(__dirname, '../Frontend/code')));
 
+app.get('/', (req, res) => {
+  res.redirect('/home.html');
+});
+
 app.post('/index',(req, res)=>{
   const username = req.body.username;
   console.log(`Username: ${username}`);
-  res.redirect(`/index.html?username=${encodeURIComponent(username)}`);
+  res.redirect(`/game.html?username=${encodeURIComponent(username)}`);
 })
-
-
 
 
 server.listen(PORT, () => {
