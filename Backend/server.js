@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan')
+const bodyParser = require('body-parser');
+
 const app = express();
 //const io_routing = require('./io/routing.js')
 
@@ -17,6 +19,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //pathing to frontend
 app.use('/', express.static(path.join(__dirname, '../Frontend/static')));
@@ -24,7 +27,9 @@ app.use('/', express.static(path.join(__dirname, '../Frontend/styles')));
 app.use('/', express.static(path.join(__dirname, '../Frontend/code')));
 
 app.post('/index',(req, res)=>{
-  res.redirect('index.html')
+  const username = req.body.username;
+  console.log(`Username: ${username}`);
+  res.redirect(`/index.html?username=${encodeURIComponent(username)}`);
 })
 
 

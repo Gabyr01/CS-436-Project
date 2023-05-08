@@ -1,7 +1,7 @@
 import player from "./player.js"
 
 const prepareMessage = (class_, player) => {
-    let {username, message } = player
+    let {username, message} = player
     console.log(username)
     const chatbox = document.getElementById('chatbox')
     const Message = document.createElement('div')

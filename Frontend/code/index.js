@@ -1,9 +1,7 @@
 import { chatbox, prepareMessage } from './chatbox.js'
-import player from './player.js';
+
 
 var socket = io();
-
-console.log(player)
 
 // recieving message
 chatbox(socket)
